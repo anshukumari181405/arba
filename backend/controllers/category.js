@@ -2,7 +2,6 @@ const express = require('express');
 const CategoryModel = require('../models/categories');
 const authorization = require("../middlewares/auth");
 const { upload } = require("../utils/multer");
-const cloudinary = require("../utils/cloudinary");
 const CategoryController = express.Router();
 
 // Get All Categories

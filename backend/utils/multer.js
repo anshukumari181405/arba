@@ -2,7 +2,7 @@ const multer = require('multer')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './tmp/my-uploads/Avatar')
+      cb(null, './uploads')
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 
   const storageforpost = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './tmp/my-uploads/posts')
+      cb(null, './uploads/posts')
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
