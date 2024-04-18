@@ -1,14 +1,13 @@
 const express = require('express');
 const CategoryModel = require('../models/categories');
-const authorization = require("../middlewares/auth");
 const { upload } = require("../utils/multer");
 const CategoryController = express.Router();
 
 // Get All Categories
 
 
-CategoryController.get('/category', authorization, async (req, res) => {
-
+CategoryController.get('/category', async (req, res) => {
+console.log("hello" );
   try {
     let query = {};
 
@@ -28,8 +27,9 @@ CategoryController.get('/category', authorization, async (req, res) => {
 
 // Create Category
 
-CategoryController.post('/category', authorization, async (req, res) => {
-  const user = req.userId;
+CategoryController.post('/category',  async (req, res) => {
+  console.log(req.body);
+  const user = "661e470b23b74ace6fa80bb0";
   try {
     const { name, slug ,image} = req.body;
     const category = await CategoryModel.create({ name, slug, image, owner: user });
@@ -41,7 +41,7 @@ CategoryController.post('/category', authorization, async (req, res) => {
 
 // Update Category
 
-CategoryController.patch('/category/update/:id', authorization, async (req, res) => {
+CategoryController.patch('/category/update/:id',async (req, res) => {
   try {
     const categoryId = req.params.id;
     const { name, slug ,image} = req.body;
@@ -63,7 +63,7 @@ CategoryController.patch('/category/update/:id', authorization, async (req, res)
 
 // Get Single Category
 
-CategoryController.get('/category/:id', authorization, async (req, res) => {
+CategoryController.get('/category/:id',  async (req, res) => {
   try {
     const categoryId = req.params.id;
     const category = await CategoryModel.findById(categoryId);
@@ -78,7 +78,7 @@ CategoryController.get('/category/:id', authorization, async (req, res) => {
 
 // Delete Category
 
-CategoryController.delete('/category/delete/:id', authorization, async (req, res) => {
+CategoryController.delete('/category/delete/:id',  async (req, res) => {
   try {
     const categoryId = req.params.id;
     const category = await CategoryModel.findByIdAndDelete(categoryId);
